@@ -4,10 +4,12 @@
 
     this.UserAuthenticate = function () {
         console.log('UserAuthenticate called');
+        return true;
         
     };
 
     this.SystemAuthenticate = function () {
+        console.log('SystemAuthenticate called');
         return true;
     };
 
@@ -21,18 +23,21 @@ function ValidateLogin()
 {
     var email = $("#txtEmail").val();
     var user = new SecureLogin(email);
-    user.UserAuthenticate();
-   
-    if ($("#btnLogin").text() == "Next") {
-        $("#divPin").show();
-        $("#divEmail").hide();
-        $("#btnLogin").text("Login");
-    }
-    else {
-        HideControls();
-        $("#status").html("Processing please wait..");
-       
-        setTimeout(LoginSuccess, 2000);
+    if (user.UserAuthenticate()) {
+        if ($("#btnLogin").text() == "Next") {
+            $("#divPin").show();
+            $("#divEmail").hide();
+            $("#btnLogin").text("Login");
+        }
+        else {
+            $("#status").html("Processing please wait..");
+            if (user.SystemAuthenticate()) {
+                HideControls();
+                setTimeout(LoginSuccess, 2000);
+            }
+            else
+                LoginFailed();//default login page
+        }
     }
    
 }
@@ -55,6 +60,11 @@ function ShowControls() {
 function LoginSuccess() {
     $("#status").html("Login success.");
     setTimeout(LoginOut, 2000);
+}
+
+function LoginFailed() {
+    $("#status").html("Login failed.");
+    window.location.href = 'index.html';
 }
 
 function LoginOut() {
