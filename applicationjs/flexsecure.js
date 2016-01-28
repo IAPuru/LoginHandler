@@ -4,7 +4,6 @@
     console.log('Flexsecure sdk instantiated');
     
     this.userAuthenticate = function (email, system) {
-      
         console.log('UserAuthenticate called');
         //result = this.helper.restPost("/user/authenticate", { "email": email, "system": system } )
 
@@ -19,6 +18,7 @@
     };
 
     this.systemPoll = function () {
+        var counter = setInterval(timer, 1000);
         //setup timer for 10 sec
         // raise event Passwordless
         // polling every 1 second,
@@ -34,6 +34,19 @@
         
         return true;
     };
+
+    var count = 10;
+
+    function timer() {
+        count = count - 1;
+        if (count <= 0) {
+            clearInterval(counter);
+            //counter ended, do something here
+            return;
+        }
+        alert("Polling:" + count);
+        //Do code for showing the number of seconds here
+    }
 
   //  this.helper.restPost (URL, BODY) {
         // retrn result of a post call using this.key in header
