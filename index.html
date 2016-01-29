@@ -36,23 +36,27 @@
         <h5 class="header col s12 light"></h5>
       </div>
         <div class="row" id="divEmail">
-         <div class="input-field col s12" >
-          <input id="txtEmail" type="email" class="validate">
-          <label for="txtEmail">Email</label>
+         <div class="input-field col s10" >
+          <input id="txtEmail" type="email" class="validate" required="" aria-required="true">
+             <label for="txtEmail" data-error="" data-success="">Email</label>
         </div>
+            
+             <div class="col s2">
+           <a class="waves-effect waves-light btn" id="btnLogin" onclick="javascript: ValidateLogin()">Next</a>
+        
+      </div>
             </div>
         <div class="row" id="divPin"  style="display:none;">
-             <div class="input-field col s12" >
+             <div class="input-field col s10" >
           <input id="txtPin" type="text">
           <label for="txtPin">Pin</label>
         </div>
-        </div>
-      <div class="row center">
-          <a class="waves-effect waves-light btn" id="btnLogin" onclick="javascript: ValidateLogin()">Next</a>
-          <label class="flow-text" id="status"></label>
+ <div class="col s2">
+           <a class="waves-effect waves-light btn" id="btn" onclick="javascript:ValidatePin()">Login</a>
       </div>
-      <br><br>
-
+        </div>
+     
+  <label class="flow-text" id="status"></label>
     </div>
   </div>
 
