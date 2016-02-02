@@ -5,6 +5,7 @@
     
     this.userAuthenticate = function (email, system) {
         console.log('UserAuthenticate called');
+        
         //result = this.helper.restPost("/user/authenticate", { "email": email, "system": system } )
 
         // raise event for result
@@ -37,6 +38,15 @@
 
     var count = 10;
 
+    function pollMe()
+    {
+        var num = Math.random();
+        if (num < 0.2) return true;
+        else if (num < 0.4) return true;
+        else if (num < 0.9) return false; 
+        else return false; 
+    }
+
     function timer() {
         count = count - 1;
         if (count <= 0) {
@@ -44,8 +54,9 @@
             //counter ended, do something here
             return;
         }
-        alert("Polling:" + count);
-        //Do code for showing the number of seconds here
+
+        pollMe();
+        
     }
 
   //  this.helper.restPost (URL, BODY) {
