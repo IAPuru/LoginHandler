@@ -18,6 +18,13 @@
         return true;
     };
 
+    var eListener = new EventListener();
+
+    eListener.on("timeout", function () {
+        console.log(" timeout listener called.");
+    });
+
+   
     this.systemPoll = function () {
         var counter = setInterval(timer, 1000);
         //setup timer for 10 sec
@@ -51,6 +58,7 @@
         count = count - 1;
         if (count <= 0) {
             clearInterval(counter);
+             eListner.fire("timeout");
             //counter ended, do something here
             return;
         }
