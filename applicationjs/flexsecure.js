@@ -18,11 +18,13 @@
         return true;
     };
 
-    var eListener = new EventListener();
+    var target = new EventTarget();
+    function timeoutEvent(event) {
+        alert(" timeout listener called.");
+    };
 
-    eListener.on("timeout", function () {
-        console.log(" timeout listener called.");
-    });
+    target.addListener("timeout", timeoutEvent);
+   
 
    
     this.systemPoll = function () {
@@ -57,13 +59,13 @@
     function timer() {
         count = count - 1;
         if (count <= 0) {
-            clearInterval(counter);
-             eListner.fire("timeout");
+            target.fire({ type: "timeout" });
+            count = 1;
             //counter ended, do something here
             return;
         }
-
-        pollMe();
+       // alert(count);
+      pollMe();
         
     }
 
