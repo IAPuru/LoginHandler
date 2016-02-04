@@ -1,32 +1,46 @@
-﻿var apikey = '1234';
+﻿
 function ValidateLogin() {
-    var email = $("#txtEmail").val();
-    if (email == "") {
-        $("#status").html("Email required.");
-        return;
+    var fak = new fakeFS();
+    var auth = fak.userAuthenticate();
+    if (auth.mode == "pin") {
+        console.log("pin");
+        $("#divPin").show();
+        $("#divEmail").hide();
     }
     else {
-        var clsName = $('#txtEmail').attr('class');
-        if (clsName.indexOf("invalid") > 0)
-        {
-            $("#status").html("Email invalid.");
-            return;
-        }
+        console.log("pinless");
+        fak.systemAuthenticate();
     }
-    $("#status").html("");
-    var flexapi = new flexsecure(apikey);
-
-    if (flexapi.userAuthenticate(email, "pin")) {
+    
+   
+   // var email = $("#txtEmail").val();
+   // if (email == "") {
+   //     $("#status").html("Email required.");
+   //     return;
+   // }
+   // else {
+   //     var clsName = $('#txtEmail').attr('class');
+   //     if (clsName.indexOf("invalid") > 0)
+   //     {
+   //         $("#status").html("Email invalid.");
+   //         return;
+   //     }
+   // }
+   // $("#status").html("");
+ 
+   // var flexapi = new flexsecure(apikey);
+   
+   // if (flexapi.userAuthenticate(email, "pin")) {
      
-            $("#divPin").show();
-            $("#divEmail").hide();
+   //         $("#divPin").show();
+   //         $("#divEmail").hide();
            
-   }
+   //}
 
 }
 
 function ValidatePin() {
-    var flexapi = new flexsecure(apikey);
+    var flexapi = new flexsecure("apikey");
     $("#status").html("Processing please wait..");
     if (flexapi.systemAuthenticate()) {
         HideControls();
